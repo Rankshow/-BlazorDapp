@@ -1,0 +1,21 @@
+﻿@page "/CodeDemo"
+<h3>CodeDemo</h3>
+
+@* implicit Razor expression *@
+@name
+
+@* Explicit Razor Expression *@
+<p>@(DateTime.Now - TimeSpan.FromDays(7))</p>
+
+@{
+    void RedenderName(string name)
+    {
+        <p>Name: <strong>@name</strong></p>
+    }
+    RedenderName("Gabriel Shola");
+    RedenderName("Jude Bellingham");
+}
+
+@code {
+    string name = "Rocket Takule";
+}
