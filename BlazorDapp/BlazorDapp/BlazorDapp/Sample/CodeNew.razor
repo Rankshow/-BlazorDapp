@@ -1,0 +1,15 @@
+﻿@page "/codeNew"
+@page "/codeNewAgain"
+@page "/codeNew/{Variable}"
+@page "/codeNew/{IntVariable:int}"
+<h3>CodeNew</h3>
+
+<b>String Value: </b> @(Variable ?? "No string variable") <br />
+<b>Int Value: </b> @(IntVariable == null ? "No int variable" : IntVariable)
+
+@code {
+    [Parameter]
+    public string? Variable { get; set; }
+    [Parameter]
+    public int? IntVariable { get; set; }
+}
