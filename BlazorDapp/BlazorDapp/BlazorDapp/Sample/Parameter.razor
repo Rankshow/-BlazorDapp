@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+using 
+<h3>Parameter</h3>
+
+<InputText Value="Reconcile"/>
+
+@code {
+    string Reconcile = "";
+    [Parameter]
+    public string Parameter1 { get; set; }
+
+    [Parameter, EditorRequired]
+    public required string LastName { get; set; }
+
+    [SupplyParameterFromQuery(Name = "Parameter1")]
+    public string? Levy { get; set; }
+}

@@ -5,11 +5,17 @@
 <h3>CodeNew</h3>
 
 <b>String Value: </b> @(Variable ?? "No string variable") <br />
-<b>Int Value: </b> @(IntVariable == null ? "No int variable" : IntVariable)
+<b>Int Value: </b> @(IntVariable == null ? "No int variable" : IntVariable) <br />
+<b>String Value: </b> @(FirstName == null ? "No firstName available" : FirstName)
 
 @code {
     [Parameter]
     public string? Variable { get; set; }
+
     [Parameter]
     public int? IntVariable { get; set; }
+
+    [Parameter, SupplyParameterFromQuery]
+    public string? FirstName { get; set; }
+
 }
