@@ -1,0 +1,17 @@
+﻿@page "/Mybutton"
+<h3>MyButton</h3>
+
+<button @attributes="AdditionalAttributes" @onclick="onButtonClickedAsync">Clicked me</button>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { set; get; }
+
+    [Parameter]
+    public EventCallback onClick { get; set; }
+
+    private async Task onButtonClickedAsync()
+    {
+        await onClick.InvokeAsync();
+    }
+}

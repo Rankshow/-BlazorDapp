@@ -7,9 +7,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\Layout\AdminLayout.razor" />
+    <Content Remove="Demo\LayoutDemo.razor" />
+    <Content Remove="Demo\_Imports.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\BlazorDapp.Services\BlazorDapp.Services.csproj" />
     <ProjectReference Include="..\BlazorDapp.Client\BlazorDapp.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Layout\AdminLayout.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\Layout\AdminLayout.razor" />
+    <_ContentIncludedByDefault Remove="Demo\_Imports.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Components\Layout\AdminLayout.razor" />
+    <None Include="Demo\LayoutDemo.razor" />
+    <None Include="Demo\_Imports.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Demo\_Imports.razor" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,13 @@
+﻿@page "/TypeParam"
+
+
+<h3>TypePara</h3>
+
+<MyList TItem="string" Items="@data"/>
+
+@code {
+    private List<string> data = new()
+    {
+        "Apple", "Banana", "Cherry"
+    };
+}
