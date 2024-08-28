@@ -1,18 +1,18 @@
 ﻿@page "/MyButtonDemo"
 @rendermode InteractiveServer
-<h3>MyButtonDemo</h3>
 
 <h1>Coutre..</h1>
 
 @* onclick paramenter without no @ sign.*@
-<MyButton class="btn btn-primary" onClick="IncrementCount">Click me</MyButton>
-    @currentCount 
+<MyButton class="btn btn-primary" onClick="IncrementCountAsync">Click me</MyButton>
+   <br />Current count: @currentCount 
 
 @code {
     private int currentCount = 0;
-    
-    private void IncrementCount()
+
+    private async Task IncrementCountAsync()
     {
+        await Task.Delay(2000);
         currentCount++;
     }
 }

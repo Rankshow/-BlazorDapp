@@ -1,0 +1,29 @@
+﻿@page "/StateServiceDemo"
+@inject StateService StateService
+@implements IDisposable
+
+<h3>StateServiceDemo</h3>
+
+<ul>
+    @foreach (var message in StateService.GetMessages())
+    {
+        <li>@message</li>
+    }
+</ul>
+
+<button class="btn btn-primary" @onclick="AddMessage">Add Message</button>
+
+@code {
+    protected override void OnInitialized()
+    {
+        StateService.OnChange += () => InvokeAsync(StateHasChanged);
+    }
+    private void AddMessage()
+    {
+        StateService.AddMessage($"New messages at {DateTime.Now}");
+    }
+    public void Dispose()
+    {
+        StateService.OnChange -= StateHasChanged;
+    }
+}

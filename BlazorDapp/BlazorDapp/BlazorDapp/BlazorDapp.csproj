@@ -37,4 +37,8 @@
     <UpToDateCheckInput Remove="Demo\_Imports.razor" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\BlazorDapp.Client\Pages\Counter.razor.cs" Link="Counter.razor.cs" />
+  </ItemGroup>
+
 </Project>

@@ -1,7 +1,7 @@
 ﻿@page "/Mybutton"
-<h3>MyButton</h3>
+<h3>Counter</h3>
 
-<button @attributes="AdditionalAttributes" @onclick="onButtonClickedAsync">Clicked me</button>
+<button disabled="@isDisable" @attributes="AdditionalAttributes" @onclick="onButtonClickedAsync">Clicked me</button>
 
 @code {
     [Parameter(CaptureUnmatchedValues = true)]
@@ -9,9 +9,18 @@
 
     [Parameter]
     public EventCallback onClick { get; set; }
+    private bool isExecuting = false;
+    private bool isDisable => isExecuting;
+    // use stateHAsChanged only when you need too
 
     private async Task onButtonClickedAsync()
-    {
+    {  
+        if (isExecuting)
+            return;
+        isExecuting = true;
+
+        await InvokeAsync(StateHasChanged);
         await onClick.InvokeAsync();
+        isExecuting = false;
     }
 }

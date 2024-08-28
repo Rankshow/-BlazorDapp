@@ -1,0 +1,37 @@
+﻿@page "/VirtualizeDemo"
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@inject Data Data
+
+<h3>VirtualizeDemo</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>RealName</th>
+            <th>Power</th>
+        </tr>
+    </thead>
+    @* <Virtualize Items="@Data.GetData()">  *@
+    <Virtualize ItemsProvider="LoadSuperHeroes"> 
+        <EmptyContent>
+            Loading....
+        </EmptyContent>
+        <ChildContent>
+        <tr>
+            <td>@context.Name</td>
+            <td>@context.RealName</td>
+            <td>@context.Power</td>
+        </tr>
+        </ChildContent>
+    </Virtualize>
+</table>
+@code {
+    private async ValueTask<ItemsProviderResult<Superhero>> LoadSuperHeroes(ItemsProviderRequest request)
+    {
+        var totalnumberofHeroes = Data.GetDataCount();
+        var numHeroes = Math.Min(request.Count, totalnumberofHeroes - request.StartIndex);
+        var heroes = await Data.GetDataAsync(request.StartIndex, numHeroes, request.CancellationToken);
+        return new ItemsProviderResult<Superhero>(heroes, totalnumberofHeroes);
+    }
+}

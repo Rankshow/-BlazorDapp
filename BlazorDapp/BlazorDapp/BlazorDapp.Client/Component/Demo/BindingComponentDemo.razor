@@ -1,0 +1,11 @@
+﻿@page "/..BindingComponentDemo"
+@rendermode InteractiveServer
+<h3>BindingComponentDemo</h3>
+
+<BindingComponent Value="@bindingComponentValue1" />@bindingComponentValue1
+<BindingComponent @bind-Value="@bindingComponentValue2" />@bindingComponentValue2
+@code {
+    string bindingComponentValue1 = "Before update";
+    string bindingComponentValue2 = "Before update";
+    string bindingComponentValue3 = "Before update";
+}

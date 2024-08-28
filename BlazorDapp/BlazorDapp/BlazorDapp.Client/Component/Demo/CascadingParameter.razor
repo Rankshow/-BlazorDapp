@@ -1,0 +1,30 @@
+﻿@page "/CascadingParameter"
+@rendermode InteractiveWebAssembly
+
+<h1>CascadingParameter</h1>
+
+<h2>No Cascading</h2>
+@* <NoCascadeParameter Parameter="@ValueToCascade"/>
+<NoCascadeParameter Parameter="@ValueToCascade"/>
+<NoCascadeParameter Parameter="@ValueToCascade"/> *@
+
+<h2>With Cascade</h2>
+<CascadingValue Value="@ValueToCascade">
+    <WidthCascadingParameter/>
+    <WidthCascadingParameter/>
+    <WidthCascadingParameter/>
+</CascadingValue>
+
+
+
+<button @onclick="UpdateValue">Update Value</button>
+@code {
+    string ValueToCascade = "Hello";
+    string name = "Micheal";
+
+    protected async Task UpdateValue()
+    {
+        ValueToCascade = $"Hello! {@name}..., How are you too 🎈";
+        await Task.FromResult(ValueToCascade);
+    }
+}

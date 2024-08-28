@@ -1,5 +1,6 @@
-using BlazorDapp.Client.Pages;
+using BlazorDapp;
 using BlazorDapp.Components;
+using BlazorDapp.Demo.Service;
 using BlazorDapp.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,10 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddSingleton<IMyService, MyService>();
+builder.Services.AddSingleton<Data>();
+
+//State management
+builder.Services.AddSingleton<StateService>();
 
 var app = builder.Build();
 

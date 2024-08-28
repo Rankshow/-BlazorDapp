@@ -1,0 +1,68 @@
+﻿@page "/LifeCycleDemo"
+@page "/LifeCycledemo/{Parameter}"
+
+
+<h3>LifeCycleDemo</h3>
+@DateTime.Now <br />
+
+@foreach(var e in Events)
+{
+    <div> @e </div>
+}
+
+<a href="@($"/LifeCycleDemo/{Guid.NewGuid()}")">Refresh</a>
+
+@code {
+    List<string> Events { get; set; } = new();
+
+    [Parameter]
+    public string? Parameter { get; set; }
+
+    //methods that log events
+    public void LogEvent(string eventName)
+    {
+        Events.Add($"{eventName} Start");
+        Events.Add($"{eventName} End");
+    }
+
+    public override Task SetParametersAsync(ParameterView parameter)
+    {
+        LogEvent("SetParameterAsync");
+        return base.SetParametersAsync(parameter);
+    }
+
+    protected async override void OnInitialized()
+    {
+        LogEvent("OnInitialized");
+    }
+    protected override Task OnInitializedAsync()
+    {
+        LogEvent("OnInitializedAysnc");
+        return base.OnInitializedAsync();
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        LogEvent("OnParametersSetAysnc");
+        return base.OnParametersSetAsync();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Events.Add($"OnAfterRender is first render:{firstRender}");
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        Events.Add($"OnAfterRender is first render:{firstRender}");
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    protected override bool ShouldRender()
+    {
+        Events.Add("ShoulderRender");
+        return true;
+    }
+
+
+}
